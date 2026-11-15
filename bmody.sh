@@ -521,20 +521,20 @@ determine_save_directory() {
 install_mods() {
     log_info "Installing mods..."
     
-    # Step 1: Install Lovely Injector (version.dll to game directory)
+    # Step 1: Install Lovely Injector (winmm.dll to game directory)
     log_info "Installing Lovely Injector..."
     
-    # Find version.dll in the extracted lovely files
-    local version_dll=$(find "$TEMP_DIR/lovely" -name "version.dll" | head -1)
+    # Find winmm.dll in the extracted lovely files
+    local winmm_dll=$(find "$TEMP_DIR/lovely" -name "winmm.dll" | head -1)
     
-    if [[ -z "$version_dll" ]]; then
-        log_error "version.dll not found in Lovely Injector archive"
+    if [[ -z "$winmm_dll" ]]; then
+        log_error "winmm.dll not found in Lovely Injector archive"
         return 1
     fi
     
-    # Copy version.dll to game directory
-    cp "$version_dll" "$BALATRO_PATH/"
-    log_success "Installed version.dll to game directory"
+    # Copy winmm.dll to game directory
+    cp "$winmm_dll" "$BALATRO_PATH/"
+    log_success "Installed winmm.dll to game directory"
     
     # Step 2: Install Steamodded (to save directory/Mods)
     log_info "Installing Steamodded..."
@@ -581,7 +581,7 @@ check_launch_options() {
     echo
     log_info "You MUST set the following launch options for Balatro in Steam:"
     echo
-    echo "    WINEDLLOVERRIDES=\"version=n,b\" %command%"
+    echo "    WINEDLLOVERRIDES=\"winmm=n,b\" %command%"
     echo
     log_info "To set launch options:"
     log_info "1. Right-click Balatro in your Steam library"
@@ -660,11 +660,11 @@ main() {
     log_info "Installation Summary:"
     log_info "  • Game Directory: $BALATRO_PATH"
     log_info "  • Save Directory: $BALATRO_SAVE_PATH"
-    log_info "  • Lovely Injector: version.dll installed in game directory"
+    log_info "  • Lovely Injector: winmm.dll installed in game directory"
     log_info "  • Steamodded: Installed in $BALATRO_SAVE_PATH/Mods/"
     echo
     log_warning "REMEMBER: Launch options must be set in Steam!"
-    log_info "Launch Options: WINEDLLOVERRIDES=\"version=n,b\" %command%"
+    log_info "Launch Options: WINEDLLOVERRIDES=\"winmm=n,b\" %command%"
     echo
     log_info "To add more mods:"
     log_info "  1. Use: $0 --mod path/to/mod.zip"
