@@ -25,7 +25,7 @@ $ sudo dnf install curl jq unzip
 $ sudo pacman -S curl jq unzip
 ```
 
-Then grab the script:
+Then grab the script: **(NOTE: If you're reading this you're probably on my (dating92) fork, so switch the URL to https://github.com/dating92/bmody)**
 ```bash
 $ git clone https://github.com/auth-xyz/bmody
 $ cd bmody/
@@ -52,13 +52,13 @@ The script will:
 
 **Important**: You MUST set these launch options in Steam or the mods won't work:
 ```
-WINEDLLOVERRIDES="version=n,b" %command%
+WINEDLLOVERRIDES="winmm=n,b" %command%
 ```
 
 To set launch options: Right-click Balatro → Properties → paste the above into Launch Options.
 ----
 ### What gets installed where
-- **Lovely Injector**: `version.dll` goes in your game directory (where `Balatro.exe` lives)
+- **Lovely Injector**: `winmm.dll` goes in your game directory (where `Balatro.exe` lives)
 - **Steamodded**: Gets installed to your Wine prefix save directory under `Mods/Steamodded/`
 - **Additional mods**: Go in the same `Mods/` folder as Steamodded
 
